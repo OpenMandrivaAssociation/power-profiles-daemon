@@ -1,6 +1,6 @@
 Name:           power-profiles-daemon
 Version:        0.11.1
-Release:        1
+Release:        2
 Summary:        Makes power profiles handling available over D-Bus
 Group:          System/Tools
 License:        GPLv3+
