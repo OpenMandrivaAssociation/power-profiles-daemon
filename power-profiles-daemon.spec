@@ -1,6 +1,6 @@
 Name:           power-profiles-daemon
-Version:        0.11.1
-Release:        2
+Version:        0.12
+Release:        1
 Summary:        Makes power profiles handling available over D-Bus
 Group:          System/Tools
 License:        GPLv3+
@@ -33,7 +33,7 @@ This package contains the documentation for %{name}.
 %autosetup
 
 %build
-%meson -Dgtk_doc=true
+%meson -Dgtk_doc=false
 %meson_build
 
 %install
@@ -62,12 +62,7 @@ mkdir -p $RPM_BUILD_ROOT/%{_localstatedir}/lib/power-profiles-daemon
 %{_bindir}/powerprofilesctl
 %{_libexecdir}/%{name}
 %{_unitdir}/%{name}.service
-%{_sysconfdir}/dbus-1/system.d/net.hadess.PowerProfiles.conf
+%{_datadir}/dbus-1/system.d/net.hadess.PowerProfiles.conf
 %{_datadir}/dbus-1/system-services/net.hadess.PowerProfiles.service
 %{_datadir}/polkit-1/actions/net.hadess.PowerProfiles.policy
 %{_localstatedir}/lib/power-profiles-daemon
-
-%files docs
-%dir %{_datadir}/gtk-doc/
-%dir %{_datadir}/gtk-doc/html/
-%{_datadir}/gtk-doc/html/%{name}/
