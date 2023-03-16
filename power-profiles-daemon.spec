@@ -1,36 +1,36 @@
-Name:           power-profiles-daemon
-Version:        0.12
-Release:        1
-Summary:        Makes power profiles handling available over D-Bus
-Group:          System/Tools
-License:        GPLv3+
-URL:            https://gitlab.freedesktop.org/hadess/power-profiles-daemon
-Source0:        https://gitlab.freedesktop.org/hadess/power-profiles-daemon/-/archive/%{version}/power-profiles-daemon-%{version}.tar.bz2
-
-BuildRequires:  meson
-BuildRequires:  gtk-doc
-BuildRequires:  pkgconfig(udev)
-BuildRequires:  pkgconfig(libsystemd)
-BuildRequires:  pkgconfig(gio-2.0)
-BuildRequires:  pkgconfig(gudev-1.0)
-BuildRequires:  pkgconfig(upower-glib)
-BuildRequires:  pkgconfig(polkit-gobject-1)
-BuildRequires:  systemd
-BuildRequires:  umockdev
-BuildRequires:  python3dist(python-dbusmock)
+Summary:	Makes power profiles handling available over D-Bus
+Name:		power-profiles-daemon
+Version:	0.12
+Release:	2
+Group:		System/Tools
+License:	GPLv3+
+URL:		https://gitlab.freedesktop.org/hadess/power-profiles-daemon
+Source0:	https://gitlab.freedesktop.org/hadess/power-profiles-daemon/-/archive/%{version}/power-profiles-daemon-%{version}.tar.bz2
+BuildRequires:	meson
+BuildRequires:	gtk-doc
+BuildRequires:	pkgconfig(udev)
+BuildRequires:	pkgconfig(libsystemd)
+BuildRequires:	pkgconfig(gio-2.0)
+BuildRequires:	pkgconfig(gudev-1.0)
+BuildRequires:	pkgconfig(upower-glib)
+BuildRequires:	pkgconfig(polkit-gobject-1)
+BuildRequires:	systemd
+BuildRequires:	umockdev
+BuildRequires:	python3dist(python-dbusmock)
+BuildRequires:	systemd-rpm-macros
 
 %description
 %{summary}.
 
 %package docs
-Summary:        Documentation for %{name}
-BuildArch:      noarch
+Summary:	Documentation for %{name}
+BuildArch:	noarch
 
 %description docs
 This package contains the documentation for %{name}.
 
 %prep
-%autosetup
+%autosetup -p1
 
 %build
 %meson -Dgtk_doc=false
@@ -38,7 +38,7 @@ This package contains the documentation for %{name}.
 
 %install
 %meson_install
-mkdir -p $RPM_BUILD_ROOT/%{_localstatedir}/lib/power-profiles-daemon
+mkdir -p %{buildroot}%{_localstatedir}/lib/power-profiles-daemon
 
 %post
 %systemd_post %{name}.service
@@ -48,13 +48,6 @@ mkdir -p $RPM_BUILD_ROOT/%{_localstatedir}/lib/power-profiles-daemon
 
 %postun
 %systemd_postun_with_restart %{name}.service
-
-#triggerpostun -- power-profiles-daemon < 0.10.1-2
-#if [ $1 -gt 1 ] && [ -x /usr/bin/systemctl ] ; then
-#    # Apply power-profiles-daemon.service preset on upgrades to F35 and F36 as
-#    # the preset was changed to enabled in F35.
-#    /usr/bin/systemctl --no-reload preset power-profiles-daemon.service || :
-#fi
 
 %files
 %license COPYING
