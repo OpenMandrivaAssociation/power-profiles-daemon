@@ -1,7 +1,7 @@
 Summary:	Makes power profiles handling available over D-Bus
 Name:		power-profiles-daemon
 Version:	0.12
-Release:	2
+Release:	3
 Group:		System/Tools
 License:	GPLv3+
 URL:		https://gitlab.freedesktop.org/hadess/power-profiles-daemon
