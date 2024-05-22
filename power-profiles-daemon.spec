@@ -1,11 +1,11 @@
 Summary:	Makes power profiles handling available over D-Bus
 Name:		power-profiles-daemon
-Version:	0.13
+Version:	0.21
 Release:	1
 Group:		System/Tools
 License:	GPLv3+
-URL:		https://gitlab.freedesktop.org/hadess/power-profiles-daemon
-Source0:	https://gitlab.freedesktop.org/hadess/power-profiles-daemon/-/archive/%{version}/power-profiles-daemon-%{version}.tar.bz2
+URL:		https://gitlab.freedesktop.org/upower/power-profiles-daemon
+Source0:	https://gitlab.freedesktop.org/upower/power-profiles-daemon/-/archive/%{version}/power-profiles-daemon-%{version}.tar.bz2
 BuildRequires:	meson
 BuildRequires:	gtk-doc
 BuildRequires:	pkgconfig(udev)
@@ -16,7 +16,9 @@ BuildRequires:	pkgconfig(upower-glib)
 BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	systemd
 BuildRequires:	umockdev
-BuildRequires:	python3dist(python-dbusmock)
+BuildRequires:	python%{pyver}dist(python-dbusmock)
+BuildRequires:	python%{pyver}dist(argparse-manpage)
+BuildRequires:	python%{pyver}dist(shtab)
 BuildRequires:	systemd-rpm-macros
 
 %description
@@ -55,7 +57,11 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/power-profiles-daemon
 %{_bindir}/powerprofilesctl
 %{_libexecdir}/%{name}
 %{_unitdir}/%{name}.service
+%{_datadir}/bash-completion/completions/powerprofilesctl
 %{_datadir}/dbus-1/system.d/net.hadess.PowerProfiles.conf
 %{_datadir}/dbus-1/system-services/net.hadess.PowerProfiles.service
-%{_datadir}/polkit-1/actions/net.hadess.PowerProfiles.policy
+%{_datadir}/dbus-1/system-services/org.freedesktop.UPower.PowerProfiles.service
+%{_datadir}/dbus-1/system.d/org.freedesktop.UPower.PowerProfiles.conf
+%{_datadir}/polkit-1/actions/power-profiles-daemon.policy
 %{_localstatedir}/lib/power-profiles-daemon
+%{_mandir}/man1/powerprofilesctl.1*
