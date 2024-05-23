@@ -19,6 +19,7 @@ BuildRequires:	umockdev
 BuildRequires:	python%{pyver}dist(python-dbusmock)
 BuildRequires:	python%{pyver}dist(argparse-manpage)
 BuildRequires:	python%{pyver}dist(shtab)
+BuildRequires:	pylint
 BuildRequires:	systemd-rpm-macros
 
 %description
