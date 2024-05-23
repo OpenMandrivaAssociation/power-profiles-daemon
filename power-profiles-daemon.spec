@@ -14,6 +14,7 @@ BuildRequires:	pkgconfig(gio-2.0)
 BuildRequires:	pkgconfig(gudev-1.0)
 BuildRequires:	pkgconfig(upower-glib)
 BuildRequires:	pkgconfig(polkit-gobject-1)
+BuildRequires:	pkgconfig(bash-completion)
 BuildRequires:	systemd
 BuildRequires:	umockdev
 BuildRequires:	python%{pyver}dist(python-dbusmock)
